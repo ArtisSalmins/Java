@@ -1,8 +1,7 @@
-package rtu;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-  
+
 class Celojums {
   public int id;
   public String city;
