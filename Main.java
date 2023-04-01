@@ -42,22 +42,22 @@ class Main {
           add(cmd[1]);
           break;
         case "del":
-          del();
+          del(data);
           break;
         case "edit":
-          edit();
+          edit(data);
           break;
         case "print":
-          print(cmd[1]);
+          print(data);
           break;
         case "sort":
-          sort();
+          sort(data);
           break;
         case "find":
-          find();
+          find(data);
           break;
         case "avg":
-          avg();
+          avg(data);
           break;
         case "exit":
           exit(data);
@@ -98,32 +98,48 @@ class Main {
     return;
   }
 
-  public static void del(){
+  public static void del(ArrayList<Celojums> data){
     return;
   }
 
-  public static void edit(){
+  public static void edit(ArrayList<Celojums> data){
     return;
   }
 
-  public static void print(String cel){
+  public static void print(ArrayList<Celojums> data){
+    System.out.println("------------------------------------------------------------");
+    System.out.println("ID  City                 Date         Days     Price Vehicle");
+    System.out.println("------------------------------------------------------------");
+    for(Celojums cel: data){
+      System.out.printf("%-4d%-21s%-11s%6d%10.2f %-8s%n", cel.id, cel.city, cel.date, cel.duration, cel.price, cel.transport);
+    }
+    System.out.println("------------------------------------------------------------");
     return;
   }
 
-  public static void sort(){
+  public static void sort(ArrayList<Celojums> data){
     return;
   }
 
-  public static void find(){
+  public static void find(ArrayList<Celojums> data){
     return;
   }
 
-  public static void avg(){
+  public static void avg(ArrayList<Celojums> data){
     return;
   }
 
   public static void exit(ArrayList<Celojums> data){
-
+    try{
+    FileWriter fileWriter = new FileWriter(filename);
+    PrintWriter printWriter = new PrintWriter(fileWriter);
+    for(Celojums cel: data){
+      printWriter.printf("%d;%s;%s;%d;%.2f;%s%n", cel.id, cel.city, cel.date, cel.duration, cel.price, cel.transport);
+    }
+    printWriter.close();
+    } catch(Exception e) {
+      System.out.println(e);
+    }
     return;
   }
 }
