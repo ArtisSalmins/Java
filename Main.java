@@ -26,15 +26,20 @@ class Main {
   static Scanner sc = new Scanner(System.in);
   static String filename = sc.nextLine();
   public static void main(String[] args) {
-    ArrayList<String> celojumi = new ArrayList<String>();
-    celojumi = readCSV(filename);
-    String cmd;
+    ArrayList<Celojums> data = new ArrayList<Celojums>();
+    data = readCSV(filename);
+    String cmd[];
     loop: while(true){
-      cmd = sc.nextLine().toLowerCase();
+      cmd = sc.nextLine().toLowerCase().split(" ");
 
-      switch(cmd){
+      switch(cmd[0]){
         case "add":
-          add();
+          int fieldCount = cmd[1].length() - cmd[1].replace(";", "").length(); 
+          if (fieldCount!=5){
+            System.out.println("wrong field count");
+            break;
+          }
+          add(cmd[1]);
           break;
         case "del":
           del();
@@ -43,7 +48,7 @@ class Main {
           edit();
           break;
         case "print":
-          print();
+          print(cmd[1]);
           break;
         case "sort":
           sort();
@@ -55,6 +60,7 @@ class Main {
           avg();
           break;
         case "exit":
+          exit(data);
           break loop;
         default:
           System.out.println("wrong command");
@@ -81,12 +87,6 @@ class Main {
         String transport = line[5];
         Celojums cel = new Celojums(id, city, date, duration, price, transport);
         arr.add(cel);
-
-        // for(String i: line){
-        //   arr.add(i);
-        //   System.out.print(i + " ");
-        // }
-        // System.out.println();
       }
     } catch(Exception e) {
       System.out.println(e);
@@ -94,10 +94,7 @@ class Main {
     return arr;
   }
 
-  public static void add(){
-    Celojums celojums;
-
-    
+  public static void add(String cel){
     return;
   }
 
@@ -109,7 +106,7 @@ class Main {
     return;
   }
 
-  public static void print(){
+  public static void print(String cel){
     return;
   }
 
@@ -122,6 +119,11 @@ class Main {
   }
 
   public static void avg(){
+    return;
+  }
+
+  public static void exit(ArrayList<Celojums> data){
+
     return;
   }
 }
